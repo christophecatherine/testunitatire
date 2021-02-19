@@ -22,6 +22,8 @@ module.exports = {
             })
     },
 
+    // Create Article
+
     create: (req, res) => {
         console.log(req.body)
         Article
@@ -32,6 +34,7 @@ module.exports = {
     },
 
     // Get ID Article
+
     getId: async(req, res) => {
         Article
             .findById(req.params.id)
