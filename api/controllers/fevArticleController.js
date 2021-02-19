@@ -10,19 +10,20 @@ module.exports = {
 
     // Get Article
 
-    get: async(req, res) => {
+    get: (req, res) => {
         Article
             .find()
             .exec((err, data) => {
                 if (err) console.log(err);
                 res.json(data)
-                    // res.render('home', {
+                    // res.render('coka', {
                     //     dbArticle: data
                     // })
             })
     },
 
     create: (req, res) => {
+        console.log(req.body)
         Article
             .create({...req.body }, (err, data) => {
                 if (err) console.log(err);
@@ -65,6 +66,17 @@ module.exports = {
                 res.json(data)
             })
     },
+
+    // put: (req, res) => {
+    //     Article
+    //         .findByIdAndUpdate(req.params.id, { title: req.body.title },
+    //             (err, data) => {
+    //                 if (err) console.log(err);
+
+    //                 res.json(data)
+    //             })
+    // },
+
 
     // Delete article
 

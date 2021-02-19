@@ -26,10 +26,11 @@ app.use(methodOverride('_method'))
 // Ceci est un tuto sinon vous devez cacher cette information de la ligne juste en dessous
 const urlDb = 'mongodb://localhost:27017/apiRest'
 mongoose.connect(urlDb, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-// save session avec MongoDB
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false
+    })
+    // save session avec MongoDB
 const mongoStore = MongoStore(expressSession)
 
 // Handlebars
@@ -60,9 +61,11 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
+const router = require('./api/router');
+app.use('/', router)
+
 // Router
-const ROUTER = require('./api/router')
-app.use('/', ROUTER)
+
 
 // app.use((req, res) => {
 //     res.render('err404')
@@ -72,5 +75,6 @@ app.use('/', ROUTER)
 app.listen(port, () => {
     console.log("le serveur tourne sur le prt: " + port);
 });
+
 
 module.exports = app
